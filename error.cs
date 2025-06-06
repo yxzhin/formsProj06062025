@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace theprj2
 {
-    public static class error
+    public static class Error
     {
 
         public static void show(short type)

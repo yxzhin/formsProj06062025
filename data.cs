@@ -7,7 +7,7 @@ using System.IO;
 
 namespace theprj2
 {
-    public static class data
+    public static class Data
     {
 
         public static Dictionary<string, string> users = new Dictionary<string, string>();
@@ -19,7 +19,7 @@ namespace theprj2
             if (string.IsNullOrEmpty(path))
             {
 
-                error.show(-1);
+                Error.show(-1);
                 return -1;
 
             }
