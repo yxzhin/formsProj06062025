@@ -14,28 +14,30 @@ namespace theprj2
         public static Dictionary<string, string> admins = new Dictionary<string, string>();
         public static string path = "admins.txt";
 
-        public static short loadAdmins()
+        public static List<string> loadAdmins()
         {
+
+            List<string> adminsList = new List<string>();
 
             if (string.IsNullOrEmpty(path))
             {
 
                 Error.show(-1, "; putanja fajla je prazna");
-                return -1;
+                return adminsList;
 
             }
 
             if (!File.Exists(path))
             {
 
-                using(StreamWriter  sw = new StreamWriter(path))
+                using (StreamWriter sw = new StreamWriter(path))
                 {
 
                     sw.WriteLine("direktor+admin73|direktor");
 
                 }
 
-                return 1;
+                return adminsList;
 
             }
 
@@ -57,11 +59,15 @@ namespace theprj2
 
                     admins.Add(credentials, adminType);
 
+                    string name = credentials.Split('+')[0];
+
+                    adminsList.Add(name);
+
                 }
 
             }
 
-            return 1;
+            return adminsList;
 
         }
     }

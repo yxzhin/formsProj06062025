@@ -25,7 +25,7 @@ namespace theprj2
                 conn.Open();
 
                 string query = @"CREATE TABLE IF NOT EXISTS ucenici (
-    id INT PRIMARY KEY NOT NULL AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     ime TEXT NOT NULL,
     prezime TEXT NOT NULL,
     odeljenje TEXT NOT NULL,
@@ -42,13 +42,6 @@ namespace theprj2
                 return;
 
             }
-
-        }
-
-        public void close()
-        {
-
-            conn.Close();
 
         }
 
@@ -82,6 +75,41 @@ VALUES (:ime, :prezime, :odeljenje, :uzrast, :ocene);";
 
                 Error.show(-2, e.Message);
                 return -2;
+
+            }
+
+        }
+
+        public List<long> ucitajIDSvihUcenika()
+        {
+
+            List<long> ids = new List<long>();
+
+            try
+            {
+
+                string query = "SELECT id FROM ucenici";
+
+                using (var command = new SQLiteCommand(query, conn))
+                using (var reader = command.ExecuteReader())
+                {
+
+                    while (reader.Read())
+                    {
+
+                        ids.Add(long.Parse(reader["id"].ToString()));
+
+                    }
+
+                }
+
+                return ids;
+
+            } catch (Exception e)
+            {
+
+                Error.show(-2, e.Message);
+                return ids;
 
             }
 

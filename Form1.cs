@@ -15,10 +15,13 @@ namespace theprj2
         public Form1()
         {
             InitializeComponent();
-            Data.loadAdmins();
+            dbmanagement.connect();
+            adminsList = Data.loadAdmins();
             textBox2.PasswordChar = '*';
         }
 
+        public static DBManagement dbmanagement = new DBManagement();
+        public static List<string> adminsList;
         private static short failedLoginAttempts;
         public static string adminType;
         private static bool showPassword = false;
@@ -52,8 +55,8 @@ namespace theprj2
             if (adminType == "direktor")
             {
 
-                // Direktor direktor = new Direktor();
-                // direktor.Show();
+                Direktor direktor = new Direktor();
+                direktor.Show();
 
             } else
             {
