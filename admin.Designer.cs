@@ -1,6 +1,6 @@
 ﻿namespace theprj2
 {
-    partial class admin
+    partial class Admin
     {
         /// <summary>
         /// Required designer variable.

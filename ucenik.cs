@@ -14,16 +14,16 @@ namespace theprj2
         public string prezime;
         public string odeljenje;
         public int uzrast;
-        public List<int> ocene;
+        public List<Dictionary<string, List<int>>> ocene;
 
-        public Ucenik(string ime, string prezime, string odeljenje, int uzrast)
+        public Ucenik(string ime, string prezime, string odeljenje, int uzrast, List<Dictionary<string, List<int>>> ocene)
         {
 
             this.ime = ime;
             this.prezime = prezime;
             this.odeljenje = odeljenje;
             this.uzrast = uzrast;
-            ocene = new List<int>();
+            this.ocene = ocene;
 
         }
 

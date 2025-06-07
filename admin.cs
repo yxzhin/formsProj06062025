@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace theprj2
 {
-    public partial class admin : Form
+    public partial class Admin : Form
     {
-        public admin()
+        public Admin()
         {
             InitializeComponent();
         }

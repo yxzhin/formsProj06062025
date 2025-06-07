@@ -15,6 +15,62 @@ namespace theprj2
         public Form1()
         {
             InitializeComponent();
+            Data.loadAdmins();
+            textBox2.PasswordChar = '*';
+        }
+
+        private static short failedLoginAttempts;
+        public static string adminType;
+        private static bool showPassword = false;
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            string userName = textBox1.Text.Trim();
+            string password = textBox2.Text.Trim();
+            string credentials = userName + '+' + password;
+
+            if (failedLoginAttempts == 3)
+            {
+
+                Error.show(-3);
+                return;
+
+            }
+
+            if (!Data.admins.ContainsKey(credentials))
+            {
+
+                ++failedLoginAttempts;
+                Error.show(-1);
+                return;
+
+            }
+
+            adminType = Data.admins[credentials];
+
+            if (adminType == "direktor")
+            {
+
+                // Direktor direktor = new Direktor();
+                // direktor.Show();
+
+            } else
+            {
+
+                Admin admin = new Admin();
+                admin.Show();
+
+            }
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+            textBox2.PasswordChar = showPassword ? '*' : '\0';
+            showPassword = !showPassword;
+
         }
     }
 }

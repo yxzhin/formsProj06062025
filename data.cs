@@ -4,47 +4,58 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Net;
 
 namespace theprj2
 {
     public static class Data
     {
 
-        public static Dictionary<string, string> users = new Dictionary<string, string>();
-        public static string path = "users.txt";
+        public static Dictionary<string, string> admins = new Dictionary<string, string>();
+        public static string path = "admins.txt";
 
-        public static short loadUsers()
+        public static short loadAdmins()
         {
 
             if (string.IsNullOrEmpty(path))
             {
 
-                Error.show(-1);
+                Error.show(-1, "; putanja fajla je prazna");
                 return -1;
 
             }
 
-            if (!File.Exists(path)) return 0;
+            if (!File.Exists(path))
+            {
 
-            string line, userName, password;
+                using(StreamWriter  sw = new StreamWriter(path))
+                {
+
+                    sw.WriteLine("direktor+admin73|direktor");
+
+                }
+
+                return 1;
+
+            }
+
+            string line, credentials, adminType;
 
             using(StreamReader sr = new StreamReader(path))
             {
 
-                line = sr.ReadLine();
-
-                while(!string.IsNullOrEmpty(line))
+                while(!string.IsNullOrEmpty(line = sr.ReadLine()))
                 {
 
                     var splt = line.Split('|');
 
                     if (splt.Length != 2) continue;
 
-                    (userName, password) = (splt[0], splt[1]);
+                    (credentials, adminType) = (splt[0], splt[1]);
 
-                    if (users.ContainsKey(userName)) continue;
+                    if (admins.ContainsKey(credentials)) continue;
 
-                    users.Add(userName, password);
+                    admins.Add(credentials, adminType);
 
                 }
 
@@ -53,18 +64,5 @@ namespace theprj2
             return 1;
 
         }
-
-        public static void saveUsers()
-        {
-
-            using (StreamWriter sw = new StreamWriter(path, false))
-            {
-
-                foreach (var user in users) sw.WriteLine($"{user.Key}|{user.Value}");
-
-            }
-
-        }
-
     }
 }
