@@ -25,6 +25,7 @@ namespace theprj2
         private static short failedLoginAttempts;
         public static string adminType;
         private static bool showPassword = false;
+        public static List<long> ids;
 
         private void button1_Click(object sender, EventArgs e)
         {

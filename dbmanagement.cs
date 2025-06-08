@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,7 +52,21 @@ namespace theprj2
             try
             {
 
-                string query = @"INSERT INTO ucenini (ime, prezime, odeljenje, uzrast, ocene)
+                string query = "SELECT id FROM ucenici WHERE ime = :ime AND prezime = :prezime";
+
+                using (var command = new SQLiteCommand(query, conn))
+                {
+
+                    command.Parameters.AddWithValue(":ime", ucenik.ime);
+                    command.Parameters.AddWithValue(":prezime", ucenik.prezime);
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null) return -4;
+
+                }
+
+                query = @"INSERT INTO ucenici (ime, prezime, odeljenje, uzrast, ocene)
 VALUES (:ime, :prezime, :odeljenje, :uzrast, :ocene);";
 
                 string ocene = JsonNet.Serialize(ucenik.ocene);
@@ -67,6 +82,8 @@ VALUES (:ime, :prezime, :odeljenje, :uzrast, :ocene);";
                     command.ExecuteNonQuery();
 
                 }
+
+                
 
                 return conn.LastInsertRowId;
 
@@ -121,20 +138,26 @@ VALUES (:ime, :prezime, :odeljenje, :uzrast, :ocene);";
             string query = "SELECT * FROM ucenici WHERE id = :id";
 
             using (var command = new SQLiteCommand(query, conn))
-            using (var reader = command.ExecuteReader())
             {
 
-                if (!reader.Read()) return new Ucenik(null, null, null, 0, new List<Dictionary<string, List<int>>>());
+                command.Parameters.AddWithValue(":id", id);
 
-                string ime = reader["ime"].ToString();
-                string prezime = reader["prezime"].ToString();
-                string odeljenje = reader["odeljenje"].ToString();
-                int uzrast = int.Parse(reader["uzrast"].ToString());
-                List<Dictionary<string, List<int>>> ocene =
-                    JsonNet.Deserialize<List<Dictionary<string, List<int>>>>(reader["ocene"].ToString());
+                using (var reader = command.ExecuteReader())
+                {
 
-                Ucenik ucenik = new Ucenik(ime, prezime, odeljenje, uzrast, ocene);
-                return ucenik;
+                    if (!reader.Read()) return new Ucenik(null, null, null, 0, new List<Dictionary<string, List<int>>>());
+
+                    string ime = reader["ime"].ToString();
+                    string prezime = reader["prezime"].ToString();
+                    string odeljenje = reader["odeljenje"].ToString();
+                    int uzrast = int.Parse(reader["uzrast"].ToString());
+                    List<Dictionary<string, List<int>>> ocene =
+                        JsonNet.Deserialize<List<Dictionary<string, List<int>>>>(reader["ocene"].ToString());
+
+                    Ucenik ucenik = new Ucenik(ime, prezime, odeljenje, uzrast, ocene);
+                    return ucenik;
+
+                }
 
             }
 

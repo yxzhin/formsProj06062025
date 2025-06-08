@@ -23,9 +23,11 @@ namespace theprj2
         private void prikaziUcenike()
         {
 
-            List<long> ids = Form1.dbmanagement.ucitajIDSvihUcenika();
-                 
-            foreach (long id in ids)
+            listBox2.Items.Clear();
+
+            Form1.ids = Form1.dbmanagement.ucitajIDSvihUcenika();
+
+            foreach (long id in Form1.ids)
             {
 
                 string ime, prezime, odeljenje;
@@ -42,6 +44,8 @@ namespace theprj2
         private void prikaziNastavnike()
         {
 
+            listBox1.Items.Clear();
+
             foreach(string admin in Form1.adminsList)
             {
 
@@ -54,7 +58,11 @@ namespace theprj2
         private void button1_Click(object sender, EventArgs e)
         {
 
+            Add add = new Add();
 
+            DialogResult result = add.ShowDialog();
+
+            if (result == DialogResult.OK) prikaziUcenike();
 
         }
     }

@@ -21,6 +21,7 @@ namespace theprj2
                 case -1: text = "unesite validne vrednosti"; break;
                 case -2: text = "doslo je do greske: "; break;
                 case -3: text = "imali ste previse neuspelih pokusaja logina"; break;
+                case -4: text = "unete vrednosti vec postoje u bazi"; break;
 
             }
 
