@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.SQLite;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,9 +17,9 @@ namespace theprj2
         public string prezime;
         public string odeljenje;
         public int uzrast;
-        public List<Dictionary<string, List<int>>> ocene;
+        public Dictionary<string, List<int>> ocene;
 
-        public Ucenik(string ime, string prezime, string odeljenje, int uzrast, List<Dictionary<string, List<int>>> ocene)
+        public Ucenik(string ime, string prezime, string odeljenje, int uzrast, Dictionary<string, List<int>> ocene)
         {
 
             this.ime = ime;

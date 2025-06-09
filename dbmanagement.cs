@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace theprj2
 {
@@ -14,6 +15,7 @@ namespace theprj2
     {
 
         public SQLiteConnection conn;
+        public bool debugMode = true;
 
         public void connect()
         {
@@ -25,7 +27,17 @@ namespace theprj2
                 conn = new SQLiteConnection(connstr);
                 conn.Open();
 
-                string query = @"CREATE TABLE IF NOT EXISTS ucenici (
+                string query;
+
+                if (debugMode)
+                {
+
+                    query = "DELETE FROM ucenici";
+                    using (var command = new SQLiteCommand(query, conn)) command.ExecuteNonQuery();
+
+                }
+
+                query = @"CREATE TABLE IF NOT EXISTS ucenici (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     ime TEXT NOT NULL,
     prezime TEXT NOT NULL,
@@ -83,7 +95,12 @@ VALUES (:ime, :prezime, :odeljenje, :uzrast, :ocene);";
 
                 }
 
-                
+                if (Form1.dbmanagement.debugMode)
+                {
+
+                    MessageBox.Show($"id: {conn.LastInsertRowId}; ocene: {ocene}");
+
+                }
 
                 return conn.LastInsertRowId;
 
@@ -145,14 +162,14 @@ VALUES (:ime, :prezime, :odeljenje, :uzrast, :ocene);";
                 using (var reader = command.ExecuteReader())
                 {
 
-                    if (!reader.Read()) return new Ucenik(null, null, null, 0, new List<Dictionary<string, List<int>>>());
+                    if (!reader.Read()) return new Ucenik(null, null, null, 0, new Dictionary<string, List<int>>());
 
                     string ime = reader["ime"].ToString();
                     string prezime = reader["prezime"].ToString();
                     string odeljenje = reader["odeljenje"].ToString();
                     int uzrast = int.Parse(reader["uzrast"].ToString());
-                    List<Dictionary<string, List<int>>> ocene =
-                        JsonNet.Deserialize<List<Dictionary<string, List<int>>>>(reader["ocene"].ToString());
+                    Dictionary<string, List<int>> ocene =
+                        JsonNet.Deserialize<Dictionary<string, List<int>>>(reader["ocene"].ToString());
 
                     Ucenik ucenik = new Ucenik(ime, prezime, odeljenje, uzrast, ocene);
                     return ucenik;

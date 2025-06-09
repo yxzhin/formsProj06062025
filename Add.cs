@@ -17,6 +17,13 @@ namespace theprj2
             InitializeComponent();
         }
 
+        public Dictionary<string, List<int>> defaultOcene = new Dictionary<string, List<int>>
+        {
+
+            { "srpski jezik", new List<int>() },
+
+        };
+
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -35,7 +42,7 @@ namespace theprj2
 
             }
 
-            Ucenik ucenik = new Ucenik(ime, prezime, odeljenje, uzrast, new List<Dictionary<string, List<int>>>());
+            Ucenik ucenik = new Ucenik(ime, prezime, odeljenje, uzrast, defaultOcene);
 
             long result = Form1.dbmanagement.dodajUcenika(ucenik);
 

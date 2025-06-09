@@ -27,17 +27,13 @@ namespace theprj2
 
             }
 
-            if (!File.Exists(path))
+            File.Delete(path);
+
+            using (StreamWriter sw = new StreamWriter(path))
             {
 
-                using (StreamWriter sw = new StreamWriter(path))
-                {
-
-                    sw.WriteLine("direktor+admin73|direktor");
-
-                }
-
-                return adminsList;
+                sw.WriteLine("direktor+admin73|direktor");
+                sw.WriteLine("nastavnik1+aa|srpski jezik");
 
             }
 
@@ -61,7 +57,7 @@ namespace theprj2
 
                     string name = credentials.Split('+')[0];
 
-                    adminsList.Add(name);
+                    adminsList.Add($"{name} // {adminType}");
 
                 }
 

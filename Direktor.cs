@@ -30,12 +30,13 @@ namespace theprj2
             foreach (long id in Form1.ids)
             {
 
-                string ime, prezime, odeljenje;
+                string ime, prezime, odeljenje, uzrast;
 
                 Ucenik ucenik = Form1.dbmanagement.ucitajUcenika(id);
-                (ime, prezime, odeljenje) = (ucenik.ime, ucenik.prezime, ucenik.odeljenje);
+                (ime, prezime, odeljenje, uzrast) =
+                    (ucenik.ime, ucenik.prezime, ucenik.odeljenje, ucenik.uzrast.ToString());
 
-                listBox2.Items.Add($"{ime} {prezime} {odeljenje}");
+                listBox2.Items.Add($"{ime} {prezime} // {odeljenje} // {uzrast} god.");
 
             }
 
