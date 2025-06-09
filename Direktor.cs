@@ -37,7 +37,7 @@ namespace theprj2
                 (ime, prezime, odeljenje, uzrast, lozinka) =
                     (ucenik.ime, ucenik.prezime, ucenik.odeljenje, ucenik.uzrast.ToString(), ucenik.lozinka);
 
-                listBox2.Items.Add($"{ime} {prezime} // {odeljenje} // {uzrast} god. // lozinka: {lozinka}");
+                listBox2.Items.Add($"{ime} {prezime} | {odeljenje} | {uzrast} god. | lozinka: {lozinka}");
 
             }
 
@@ -54,6 +54,18 @@ namespace theprj2
                 listBox1.Items.Add(admin);
 
             }
+
+        }
+
+        private long ucitajIDIzSelektovanogPolja()
+        {
+
+            string[] splt = listBox2.SelectedItem.ToString().Split('|')[0].Split();
+            (string ime, string prezime) = (splt[0], splt[1]);
+
+            object id = Form1.dbmanagement.ucitajIDIzImenaIPrezimena(ime, prezime);
+
+            return long.Parse(id.ToString());
 
         }
 
@@ -78,6 +90,35 @@ namespace theprj2
                 return;
 
             }
+
+            long id = ucitajIDIzSelektovanogPolja();
+
+            Form1.dbmanagement.izbrisiUcenika(id);
+
+            prikaziUcenike();
+
+            MessageBox.Show($"ucenik je uspesno izbrisan!!", "uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            if (listBox2.SelectedItem == null)
+            {
+
+                Error.show(-5);
+                return;
+
+            }
+
+            long id = ucitajIDIzSelektovanogPolja();
+
+            Change change = new Change(id);
+
+            DialogResult result = change.ShowDialog();
+
+            prikaziUcenike();
 
         }
     }

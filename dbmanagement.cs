@@ -193,6 +193,56 @@ VALUES (:ime, :prezime, :lozinka, :odeljenje, :uzrast, :ocene);";
 
         }
 
+        public void izbrisiUcenika(long id)
+        {
+
+            string query = "DELETE FROM ucenici WHERE id = :id";
+
+            using (var command = new SQLiteCommand(query, conn))
+            {
+
+                command.Parameters.AddWithValue(":id", id);
+                command.ExecuteNonQuery();
+
+            }
+
+        }
+
+        public void promeniUcenika(long id, string ime, string prezime, string lozinka,
+            string odeljenje, int? uzrast, Dictionary<string, List<int>> ocene)
+        {
+
+            string query = @"UPDATE ucenici SET ";
+
+            List<string> attrs = new List<string>();
+
+            if (!string.IsNullOrEmpty(ime)) attrs.Add("ime = :ime");
+            if (!string.IsNullOrEmpty(prezime)) attrs.Add("prezime = :prezime");
+            if (!string.IsNullOrEmpty(lozinka)) attrs.Add("lozinka = :lozinka");
+            if (!string.IsNullOrEmpty(odeljenje)) attrs.Add("odeljenje = :odeljenje");
+            if (uzrast != null && uzrast != -1) attrs.Add("uzrast = :uzrast");
+            if (ocene != null) attrs.Add("ocene = :ocene");
+
+            query += string.Join(",", attrs);
+            query += " WHERE id = :id";
+
+            using ( var command = new SQLiteCommand(query, conn))
+            {
+
+                if (!string.IsNullOrEmpty(ime)) command.Parameters.AddWithValue(":ime", ime);
+                if (!string.IsNullOrEmpty(prezime)) command.Parameters.AddWithValue(":prezime", prezime);
+                if (!string.IsNullOrEmpty(lozinka)) command.Parameters.AddWithValue(":lozinka", lozinka);
+                if (!string.IsNullOrEmpty(odeljenje)) command.Parameters.AddWithValue(":odeljenje", odeljenje);
+                if (uzrast != null && uzrast != -1) command.Parameters.AddWithValue(":uzrast", uzrast);
+                if (ocene != null) command.Parameters.AddWithValue(":ocene", JsonNet.Serialize(ocene));
+
+                command.Parameters.AddWithValue(":id", id);
+                command.ExecuteNonQuery();
+
+            }
+
+        }
+
     }
 
 }
