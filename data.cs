@@ -14,6 +14,13 @@ namespace theprj2
         public static Dictionary<string, string> admins = new Dictionary<string, string>();
         public static string path = "admins.txt";
 
+        public static Dictionary<string, List<int>> defaultOcene = new Dictionary<string, List<int>>
+        {
+
+            { "srpski jezik", new List<int>() },
+
+        };
+
         public static List<string> loadAdmins()
         {
 

@@ -15,15 +15,18 @@ namespace theprj2
 
         public string ime;
         public string prezime;
+        public string lozinka;
         public string odeljenje;
         public int uzrast;
         public Dictionary<string, List<int>> ocene;
 
-        public Ucenik(string ime, string prezime, string odeljenje, int uzrast, Dictionary<string, List<int>> ocene)
+        public Ucenik(string ime, string prezime, string lozinka, string odeljenje,
+            int uzrast, Dictionary<string, List<int>> ocene)
         {
 
             this.ime = ime;
             this.prezime = prezime;
+            this.lozinka = lozinka;
             this.odeljenje = odeljenje;
             this.uzrast = uzrast;
             this.ocene = ocene;

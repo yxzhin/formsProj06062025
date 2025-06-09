@@ -17,19 +17,13 @@ namespace theprj2
             InitializeComponent();
         }
 
-        public Dictionary<string, List<int>> defaultOcene = new Dictionary<string, List<int>>
-        {
-
-            { "srpski jezik", new List<int>() },
-
-        };
-
         private void button1_Click(object sender, EventArgs e)
         {
 
             string ime = textBox1.Text.Trim();
             string prezime = textBox2.Text.Trim();
             string odeljenje = textBox3.Text.Trim();
+            string lozinka = textBox5.Text.Trim();
 
             if(string.IsNullOrEmpty(ime)
                 || string.IsNullOrEmpty(prezime)
@@ -42,7 +36,7 @@ namespace theprj2
 
             }
 
-            Ucenik ucenik = new Ucenik(ime, prezime, odeljenje, uzrast, defaultOcene);
+            Ucenik ucenik = new Ucenik(ime, prezime, lozinka, odeljenje, uzrast, Data.defaultOcene);
 
             long result = Form1.dbmanagement.dodajUcenika(ucenik);
 

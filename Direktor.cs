@@ -30,13 +30,14 @@ namespace theprj2
             foreach (long id in Form1.ids)
             {
 
-                string ime, prezime, odeljenje, uzrast;
+                string ime, prezime, odeljenje, uzrast, lozinka;
 
                 Ucenik ucenik = Form1.dbmanagement.ucitajUcenika(id);
-                (ime, prezime, odeljenje, uzrast) =
-                    (ucenik.ime, ucenik.prezime, ucenik.odeljenje, ucenik.uzrast.ToString());
 
-                listBox2.Items.Add($"{ime} {prezime} // {odeljenje} // {uzrast} god.");
+                (ime, prezime, odeljenje, uzrast, lozinka) =
+                    (ucenik.ime, ucenik.prezime, ucenik.odeljenje, ucenik.uzrast.ToString(), ucenik.lozinka);
+
+                listBox2.Items.Add($"{ime} {prezime} // {odeljenje} // {uzrast} god. // lozinka: {lozinka}");
 
             }
 
@@ -64,6 +65,19 @@ namespace theprj2
             DialogResult result = add.ShowDialog();
 
             if (result == DialogResult.OK) prikaziUcenike();
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            if (listBox2.SelectedItem == null)
+            {
+
+                Error.show(-5);
+                return;
+
+            }
 
         }
     }

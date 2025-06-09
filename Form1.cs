@@ -42,30 +42,45 @@ namespace theprj2
 
             }
 
-            if (!Data.admins.ContainsKey(credentials))
+            if (Data.admins.ContainsKey(credentials))
             {
 
-                ++failedLoginAttempts;
-                Error.show(-1);
+                adminType = Data.admins[credentials];
+
+                if (adminType == "direktor")
+                {
+
+                    Direktor direktor = new Direktor();
+                    direktor.Show();
+
+                }
+                else
+                {
+
+                    Admin admin = new Admin();
+                    admin.Show();
+
+                }
+
                 return;
 
             }
 
-            adminType = Data.admins[credentials];
+            (string ime, string prezime) = (userName.Split('_')[0], userName.Split('_')[1]);
 
-            if (adminType == "direktor")
+            object result = dbmanagement.ucitajIDIzImenaIPrezimena(ime, prezime);
+
+            if(result != null)
             {
 
-                Direktor direktor = new Direktor();
-                direktor.Show();
-
-            } else
-            {
-
-                Admin admin = new Admin();
-                admin.Show();
+                User user = new User(long.Parse(result.ToString()));
+                user.Show();
+                return;
 
             }
+
+            ++failedLoginAttempts;
+            Error.show(-1);
 
         }
 
