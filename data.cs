@@ -62,9 +62,10 @@ namespace theprj2
 
                     admins.Add(credentials, adminType);
 
-                    string name = credentials.Split('+')[0];
+                    (string name, string password) 
+                        = (credentials.Split('+')[0], credentials.Split('+')[1]);
 
-                    adminsList.Add($"{name} // {adminType}");
+                    adminsList.Add($"{name} | {adminType} | lozinka: {password}");
 
                 }
 

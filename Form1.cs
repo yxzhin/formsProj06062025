@@ -56,21 +56,17 @@ namespace theprj2
 
                 adminType = Data.admins[credentials];
 
-                if (adminType == "direktor")
+                if(adminType == "direktor")
                 {
 
                     Direktor direktor = new Direktor();
                     direktor.Show();
-
-                }
-                else
-                {
-
-                    Admin admin = new Admin();
-                    admin.Show();
+                    return;
 
                 }
 
+                Admin admin = new Admin(userName, adminType);
+                admin.Show();
                 return;
 
             }
@@ -85,9 +81,9 @@ namespace theprj2
 
             (string ime, string prezime) = (userName.Split('_')[0], userName.Split('_')[1]);
 
-            object result = dbmanagement.ucitajIDIzImenaIPrezimena(ime, prezime);
+            object result = dbmanagement.ucitajIDIzImenaIPrezimena(ime, prezime, true, password);
 
-            if(result != null)
+            if (result != null)
             {
 
                 User user = new User(long.Parse(result.ToString()));

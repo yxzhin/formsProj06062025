@@ -142,16 +142,18 @@ VALUES (:ime, :prezime, :lozinka, :odeljenje, :uzrast, :ocene);";
 
         }
 
-        public object ucitajIDIzImenaIPrezimena(string ime, string prezime)
+        public object ucitajIDIzImenaIPrezimena(string ime, string prezime, bool checkPassword=false, string lozinka=null)
         {
 
             string query = "SELECT id FROM ucenici WHERE ime = :ime AND prezime = :prezime";
+            if (checkPassword) query += " AND lozinka = :lozinka";
 
             using (var command = new SQLiteCommand(query, conn))
             {
 
                 command.Parameters.AddWithValue(":ime", ime);
                 command.Parameters.AddWithValue(":prezime", prezime);
+                if(checkPassword) command.Parameters.AddWithValue(":lozinka", lozinka);
 
                 object result = command.ExecuteScalar();
 

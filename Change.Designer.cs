@@ -140,9 +140,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Comic Sans MS", 16.2F);
-            this.button1.Location = new System.Drawing.Point(211, 338);
+            this.button1.Location = new System.Drawing.Point(171, 334);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(149, 82);
+            this.button1.Size = new System.Drawing.Size(263, 86);
             this.button1.TabIndex = 11;
             this.button1.Text = "u redu";
             this.button1.UseVisualStyleBackColor = true;

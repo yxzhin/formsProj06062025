@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,8 +37,15 @@ namespace theprj2
                 && string.IsNullOrEmpty(prezime)
                 && string.IsNullOrEmpty(odeljenje)
                 && string.IsNullOrEmpty(lozinka)
-                && !parseUzrast
-                || !string.IsNullOrEmpty(textBox4.Text.Trim())
+                && !parseUzrast)
+            {
+
+                Error.show(-1);
+                return;
+
+            }
+
+            if(!string.IsNullOrEmpty(textBox4.Text.Trim())
                 && !parseUzrast
                 || uzrast < 0)
             {
@@ -47,7 +55,7 @@ namespace theprj2
 
             }
 
-            uzrast = int.Parse(textBox4.Text.Trim());
+            uzrast = parseUzrast ? int.Parse(textBox4.Text.Trim()) : -1;
 
             Form1.dbmanagement.promeniUcenika(id, ime, prezime, lozinka, odeljenje, uzrast, null);
 

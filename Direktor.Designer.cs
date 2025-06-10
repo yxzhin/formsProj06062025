@@ -80,10 +80,10 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Comic Sans MS", 16.8F);
-            this.button1.Location = new System.Drawing.Point(608, 94);
+            this.button1.Location = new System.Drawing.Point(608, 7);
             this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(246, 59);
+            this.button1.Size = new System.Drawing.Size(246, 125);
             this.button1.TabIndex = 4;
             this.button1.Text = "dodaj ucenika";
             this.button1.UseVisualStyleBackColor = true;
@@ -92,10 +92,10 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Comic Sans MS", 16.8F);
-            this.button2.Location = new System.Drawing.Point(608, 176);
+            this.button2.Location = new System.Drawing.Point(608, 136);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(246, 59);
+            this.button2.Size = new System.Drawing.Size(246, 125);
             this.button2.TabIndex = 5;
             this.button2.Text = "izbrisi ucenika";
             this.button2.UseVisualStyleBackColor = true;
@@ -104,10 +104,10 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Comic Sans MS", 16.8F);
-            this.button3.Location = new System.Drawing.Point(608, 259);
+            this.button3.Location = new System.Drawing.Point(608, 265);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(246, 59);
+            this.button3.Size = new System.Drawing.Size(246, 125);
             this.button3.TabIndex = 6;
             this.button3.Text = "promeni ucenika";
             this.button3.UseVisualStyleBackColor = true;
