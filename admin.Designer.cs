@@ -111,7 +111,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Comic Sans MS", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(377, 36);
+            this.checkBox1.Location = new System.Drawing.Point(377, 84);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(257, 35);
             this.checkBox1.TabIndex = 6;
@@ -123,7 +123,7 @@
             // 
             this.checkBox2.AutoSize = true;
             this.checkBox2.Font = new System.Drawing.Font("Comic Sans MS", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2.Location = new System.Drawing.Point(377, 77);
+            this.checkBox2.Location = new System.Drawing.Point(377, 118);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(248, 35);
             this.checkBox2.TabIndex = 7;

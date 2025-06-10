@@ -110,6 +110,21 @@ VALUES (:ime, :prezime, :lozinka, :odeljenje, :uzrast, :ocene);";
 
                 string query = "SELECT id FROM ucenici";
 
+                switch (filterType)
+                {
+
+                    case -1: break;
+                    case 1: query += " ORDER BY odeljenje DESC"; break;
+                    case 2: query += " ORDER BY ocene DESC"; break;
+                        /*@"SELECT t.id, t.ocene, AVG(CAST(value AS INTEGER)) AS total_sum
+FROM ucenici t, json_each(t.ocene)
+WHERE json_valid(t.ocene)
+GROUP BY t.id, t.ocene
+ORDER BY total_sum DESC"
+                         */
+
+                }
+
                 using (var command = new SQLiteCommand(query, conn))
                 using (var reader = command.ExecuteReader())
                 {
