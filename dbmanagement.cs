@@ -15,7 +15,7 @@ namespace theprj2
     {
 
         public SQLiteConnection conn;
-        public bool debugMode = true;
+        public bool debugMode = true; //change if required
 
         public void connect()
         {
@@ -88,13 +88,6 @@ VALUES (:ime, :prezime, :lozinka, :odeljenje, :uzrast, :ocene);";
 
                 }
 
-                if (Form1.dbmanagement.debugMode)
-                {
-
-                    MessageBox.Show($"id: {conn.LastInsertRowId}; ocene: {ocene}");
-
-                }
-
                 return conn.LastInsertRowId;
 
             } catch (Exception e)
@@ -107,7 +100,7 @@ VALUES (:ime, :prezime, :lozinka, :odeljenje, :uzrast, :ocene);";
 
         }
 
-        public List<long> ucitajIDSvihUcenika()
+        public List<long> ucitajIDSvihUcenika(int filterType=-1)
         {
 
             List<long> ids = new List<long>();

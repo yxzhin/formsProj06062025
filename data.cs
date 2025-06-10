@@ -18,6 +18,8 @@ namespace theprj2
         {
 
             { "srpski jezik", new List<int>() },
+            { "matematika", new List<int>() },
+            { "programiranje", new List<int>() },
 
         };
 
@@ -41,6 +43,8 @@ namespace theprj2
 
                 sw.WriteLine("direktor+admin73|direktor");
                 sw.WriteLine("nastavnik1+aa|srpski jezik");
+                sw.WriteLine("nastavnik2+bb|matematika");
+                sw.WriteLine("nastavnik3+cc|programiranje");
 
             }
 

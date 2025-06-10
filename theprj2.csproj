@@ -44,18 +44,24 @@
     </Reference>
     <Reference Include="Json.Net, Version=1.0.33.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Json.Net.1.0.33\lib\netstandard2.0\Json.Net.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\lib\net46\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Data.SQLite.EF6, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>packages\System.Data.SQLite.EF6.1.0.119.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Data.SQLite.Linq, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>packages\System.Data.SQLite.Linq.1.0.119.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -79,6 +85,12 @@
     </Compile>
     <Compile Include="Change.Designer.cs">
       <DependentUpon>Change.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeGrades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeGrades.Designer.cs">
+      <DependentUpon>ChangeGrades.cs</DependentUpon>
     </Compile>
     <Compile Include="data.cs" />
     <Compile Include="dbmanagement.cs" />
@@ -118,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Change.resx">
       <DependentUpon>Change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangeGrades.resx">
+      <DependentUpon>ChangeGrades.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direktor.resx">
       <DependentUpon>Direktor.cs</DependentUpon>
