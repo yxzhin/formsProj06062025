@@ -34,6 +34,15 @@ namespace theprj2
             string password = textBox2.Text.Trim();
             string credentials = userName + '+' + password;
 
+            if(string.IsNullOrEmpty(userName)
+                || string.IsNullOrEmpty(password))
+            {
+
+                Error.show(-1);
+                return;
+
+            }
+
             if (failedLoginAttempts == 3)
             {
 
@@ -62,6 +71,14 @@ namespace theprj2
 
                 }
 
+                return;
+
+            }
+
+            if (!userName.Contains("_"))
+            {
+
+                Error.show(-1);
                 return;
 
             }

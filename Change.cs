@@ -30,12 +30,16 @@ namespace theprj2
             string prezime = textBox2.Text.Trim();
             string odeljenje = textBox3.Text.Trim();
             string lozinka = textBox5.Text.Trim();
+            bool parseUzrast = int.TryParse(textBox4.Text.Trim(), out int uzrast);
 
-            if(string.IsNullOrEmpty(ime)
+            if (string.IsNullOrEmpty(ime)
                 && string.IsNullOrEmpty(prezime)
                 && string.IsNullOrEmpty(odeljenje)
                 && string.IsNullOrEmpty(lozinka)
-                || !int.TryParse(textBox4.Text.Trim(), out int uzrast))
+                && !parseUzrast
+                || !string.IsNullOrEmpty(textBox4.Text.Trim())
+                && !parseUzrast
+                || uzrast < 0)
             {
 
                 Error.show(-1);

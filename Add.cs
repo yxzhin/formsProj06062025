@@ -28,7 +28,8 @@ namespace theprj2
             if(string.IsNullOrEmpty(ime)
                 || string.IsNullOrEmpty(prezime)
                 || string.IsNullOrEmpty(odeljenje)
-                || !int.TryParse(textBox4.Text.Trim(), out int uzrast))
+                || !int.TryParse(textBox4.Text.Trim(), out int uzrast)
+                || uzrast < 0)
             {
 
                 Error.show(-1);
