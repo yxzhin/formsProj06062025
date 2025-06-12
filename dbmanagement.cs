@@ -100,7 +100,7 @@ VALUES (:ime, :prezime, :lozinka, :odeljenje, :uzrast, :ocene);";
 
         }
 
-        public List<long> ucitajIDSvihUcenika(int filterType=-1)
+        public List<long> ucitajIDSvihUcenika(bool sortirajPoOdeljenju=false)
         {
 
             List<long> ids = new List<long>();
@@ -110,20 +110,7 @@ VALUES (:ime, :prezime, :lozinka, :odeljenje, :uzrast, :ocene);";
 
                 string query = "SELECT id FROM ucenici";
 
-                switch (filterType)
-                {
-
-                    case -1: break;
-                    case 1: query += " ORDER BY odeljenje DESC"; break;
-                    case 2: query += " ORDER BY ocene DESC"; break;
-                        /*@"SELECT t.id, t.ocene, AVG(CAST(value AS INTEGER)) AS total_sum
-FROM ucenici t, json_each(t.ocene)
-WHERE json_valid(t.ocene)
-GROUP BY t.id, t.ocene
-ORDER BY total_sum DESC"
-                         */
-
-                }
+                if (sortirajPoOdeljenju) query += " ORDER BY odeljenje DESC";
 
                 using (var command = new SQLiteCommand(query, conn))
                 using (var reader = command.ExecuteReader())

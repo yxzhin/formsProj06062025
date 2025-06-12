@@ -35,12 +35,11 @@ namespace theprj2
             dataGridView1.Columns.Add("ucenik", "ucenik");
             dataGridView1.Columns.Add("odeljenje", "odeljenje");
             dataGridView1.Columns.Add("ocene", "ocene");
+            dataGridView1.Columns.Add("prosek", "prosek");
 
             if (filtrirajPoOdeljenju && filtrirajPoOcenama) return;
 
-            int filterType = filtrirajPoOdeljenju ? 1 : 2;
-
-            List<long> ids = Form1.dbmanagement.ucitajIDSvihUcenika(filterType);
+            List<long> ids = Form1.dbmanagement.ucitajIDSvihUcenika(filtrirajPoOdeljenju);
 
             label1.Text = label1.Text.Replace("{user}", userName);
             label2.Text = label2.Text.Replace("{predmet}", predmet);
@@ -54,9 +53,13 @@ namespace theprj2
                 string user = ucenik.ime + " " + ucenik.prezime;
                 string ocene = string.Join(", ", ucenik.ocene[predmet]);
 
-                dataGridView1.Rows.Add(user, ucenik.odeljenje, ocene);
+                double prosek = ucenik.ocene[predmet].Count > 0 ? ucenik.ocene[predmet].Average() : 0;
+
+                dataGridView1.Rows.Add(user, ucenik.odeljenje, ocene, prosek);
 
             }
+
+            if (filtrirajPoOcenama) dataGridView1.Sort(dataGridView1.Columns["prosek"], ListSortDirection.Descending);
 
         }
 
